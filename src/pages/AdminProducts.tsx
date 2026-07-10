@@ -36,6 +36,7 @@ const CATEGORY_OPTIONS = [
 
 const AdminProducts = () => {
   const navigate = useNavigate();
+  const { token, admin, checkAuth } = useAuthStore();
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -69,8 +70,18 @@ const AdminProducts = () => {
   }, [navigate]);
 
   useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
+    if (!token) {
+      navigate("/login-register", { replace: true });
+      return;
+    }
+    if (!admin) checkAuth();
+  }, [token, admin, checkAuth, navigate]);
+
+  useEffect(() => {
+    if (token && admin) {
+      loadProducts();
+    }
+  }, [token, admin, loadProducts]);
 
   // Modal handlers
   const openAddModal = () => {

@@ -1,4 +1,4 @@
-import type { PageName } from "../App";
+type PageName = string;
 
 const ProductCard = (_props: { onNavigate?: (page: PageName) => void }) => {
     return (
