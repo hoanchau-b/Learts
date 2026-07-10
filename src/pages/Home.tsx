@@ -1,5 +1,27 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
-    return (
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleProductClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest<HTMLAnchorElement>(".product .title a, .product .image");
+      if (link) {
+        e.preventDefault();
+        // Extract product ID from href or data attribute
+        const href = link.getAttribute("href");
+        if (href) {
+          navigate(href);
+        }
+      }
+    };
+    document.addEventListener("click", handleProductClick);
+    return () => document.removeEventListener("click", handleProductClick);
+  }, [navigate]);
+
+  return (
     <>
           {/* OffCanvas Search Start */}
   <div id="offcanvas-search" className="offcanvas offcanvas-search">
@@ -406,7 +428,7 @@ const Home = () => {
       <div className="col-lg-6 col-md-6 col-12 learts-mb-40">
         <div className="sale-banner2">
           <div className="inner">
-            <div className="image"><img src="/assets/images/sale-banner2-1.webp" alt /></div>
+            <div className="image"><img src="/assets/images/sale-banner2-1.webp" alt="" /></div>
             <div className="content row justify-content-between mb-n3">
               <div className="col-auto mb-3">
                 <h2 className="sale-percent">10% off</h2>
@@ -429,7 +451,7 @@ const Home = () => {
     <div className="category-banner1-carousel slick-initialized slick-slider"><button className="slick-prev slick-arrow" style={{}}><i className="fas fa-long-arrow-alt-left" /></button><div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: 7787, transform: 'translate3d(-1797px, 0px, 0px)'}}><div className="slick-slide slick-cloned" data-slick-index={-3} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-3.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-3.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kids &amp; Babies</a>
@@ -441,7 +463,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={-2} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-4.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-4.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kitchen</a>
@@ -453,7 +475,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={-1} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-5.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-5.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kniting &amp; Sewing</a>
@@ -465,7 +487,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-current slick-active" data-slick-index={0} aria-hidden="false" style={{width: 599}}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={0}><img src="/assets/images/banner-s1-1.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={0}><img src="/assets/images/banner-s1-1.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={0}>Gift ideas</a>
@@ -477,7 +499,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-active" data-slick-index={1} aria-hidden="false" style={{width: 599}}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={0}><img src="/assets/images/banner-s1-2.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={0}><img src="/assets/images/banner-s1-2.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={0}>Home Decor</a>
@@ -489,7 +511,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-active" data-slick-index={2} aria-hidden="false" style={{width: 599}}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={0}><img src="/assets/images/banner-s1-3.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={0}><img src="/assets/images/banner-s1-3.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={0}>Kids &amp; Babies</a>
@@ -501,7 +523,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide" data-slick-index={3} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-4.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-4.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kitchen</a>
@@ -513,7 +535,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide" data-slick-index={4} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-5.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-5.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kniting &amp; Sewing</a>
@@ -525,7 +547,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={5} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-1.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-1.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Gift ideas</a>
@@ -537,7 +559,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={6} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-2.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-2.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Home Decor</a>
@@ -549,7 +571,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={7} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-3.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-3.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kids &amp; Babies</a>
@@ -561,7 +583,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={8} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-4.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-4.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kitchen</a>
@@ -573,7 +595,7 @@ const Home = () => {
               </div></div></div><div className="slick-slide slick-cloned" data-slick-index={9} aria-hidden="true" style={{width: 599}} tabIndex={-1}><div><div className="col" style={{width: '100%', display: 'inline-block'}}>
                 <div className="category-banner1">
                   <div className="inner">
-                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-5.webp" alt /></a>
+                    <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" className="image" tabIndex={-1}><img src="/assets/images/banner-s1-5.webp" alt="" /></a>
                     <div className="content">
                       <h3 className="title">
                         <a href="https://html-demo-orcin.vercel.app/premium/learts/shop.html" tabIndex={-1}>Kniting &amp; Sewing</a>
@@ -987,49 +1009,6 @@ const Home = () => {
     {/* Products End */}
   </div>
 </div>
-{/* Product Section End */}
-<div className="footer1-section section section-padding">
-  <div className="container">
-    <div className="row text-center row-cols-1">
-      <div className="footer1-logo col text-center">
-        <img src="/assets/images/logo.webp" alt />
-      </div>
-      <div className="footer1-menu col">
-        <ul className="widget-menu justify-content-center">
-          <li><a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#">About us</a></li>
-          <li><a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#">Store location</a></li>
-          <li><a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#">Contact</a></li>
-          <li><a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#">Support</a></li>
-          <li><a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#">Policy</a></li>
-          <li><a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#">FAQs</a></li>
-        </ul>
-      </div>
-      <div className="footer1-subscribe d-flex flex-column col">
-        <form id="mc-form" className="mc-form widget-subscibe" noValidate="true">
-          <input id="mc-email" autoComplete="off" type="email" placeholder="Enter your e-mail address" name="EMAIL" />
-          <button id="mc-submit" className="btn btn-dark">subscibe</button>
-        </form>
-        {/* mailchimp-alerts Start */}
-        <div className="mailchimp-alerts text-centre">
-          <div className="mailchimp-submitting" />{/* mailchimp-submitting end */}
-          <div className="mailchimp-success text-success" />{/* mailchimp-success end */}
-          <div className="mailchimp-error text-danger" />{/* mailchimp-error end */}
-        </div>{/* mailchimp-alerts end */}
-      </div>
-      <div className="footer1-social col">
-        <ul className="widget-social justify-content-center">
-          <li className="hintT-top" data-hint="Twitter"> <a href="https://www.twitter.com/"><i className="fab fa-twitter" /></a></li>
-          <li className="hintT-top" data-hint="Facebook"> <a href="https://www.facebook.com/"><i className="fab fa-facebook-f" /></a></li>
-          <li className="hintT-top" data-hint="Instagram"> <a href="https://www.instagram.com/"><i className="fab fa-instagram" /></a></li>
-          <li className="hintT-top" data-hint="Youtube"> <a href="https://www.youtube.com/"><i className="fab fa-youtube" /></a></li>
-        </ul>
-      </div>
-      <div className="footer1-copyright col">
-        <p className="copyright">© 2023 learts. All Rights Reserved | <strong>(+00) 123 567990</strong> | <a href="mailto:contact@learts.com">contact@learts.com</a></p>
-      </div>
-    </div>
-  </div>
-</div>
 {/* Modal */}
 <div className="quickViewModal modal fade" id="quickViewModal">
   <div className="modal-dialog modal-dialog-centered">
@@ -1041,16 +1020,16 @@ const Home = () => {
           <div className="product-images">
             <div className="product-gallery-slider-quickview">
               <div className="product-zoom" data-image="assets/images/product/single/1/product-zoom-1.webp">
-                <img src="/assets/images/product-1(1).webp" alt />
+                <img src="/assets/images/product-1(1).webp" alt="" />
               </div>
               <div className="product-zoom" data-image="assets/images/product/single/1/product-zoom-2.webp">
-                <img src="/assets/images/product-2(1).webp" alt />
+                <img src="/assets/images/product-2(1).webp" alt="" />
               </div>
               <div className="product-zoom" data-image="assets/images/product/single/1/product-zoom-3.webp">
-                <img src="/assets/images/product-3(1).webp" alt />
+                <img src="/assets/images/product-3(1).webp" alt="" />
               </div>
               <div className="product-zoom" data-image="assets/images/product/single/1/product-zoom-4.webp">
-                <img src="/assets/images/product-4(1).webp" alt />
+                <img src="/assets/images/product-4(1).webp" alt="" />
               </div>
             </div>
           </div>
@@ -1113,8 +1092,8 @@ const Home = () => {
             <div className="product-brands">
               <span className="title">Brands</span>
               <div className="brands">
-                <a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#"><img src="/assets/images/brand-3.webp" alt /></a>
-                <a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#"><img src="/assets/images/brand-8.webp" alt /></a>
+                <a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#"><img src="/assets/images/brand-3.webp" alt="" /></a>
+                <a href="https://html-demo-orcin.vercel.app/premium/learts/index.html#"><img src="/assets/images/brand-8.webp" alt="" /></a>
               </div>
             </div>
             <div className="product-meta mb-0">
