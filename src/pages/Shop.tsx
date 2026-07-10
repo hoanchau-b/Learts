@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useProductFilter } from "../hooks/useProductFilter";
 import { CATEGORIES } from "../data/products";
+import type { Product } from "../data/products";
 import type { SortOrder } from "../hooks/useProductFilter";
 import ShopProductGrid from "../components/ShopProductGrid";
 import ShopPagination from "../components/ShopPagination";
+import { useCartStore } from "../store/cartStore";
+import toast from "react-hot-toast";
 
 const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
   { value: "default", label: "Default sorting" },
@@ -22,8 +25,15 @@ const Shop = () => {
     setCurrentPage,
   } = useProductFilter();
 
+  const addItem = useCartStore((s) => s.addItem);
+
   const handleProductClick = (productId: number) => {
     navigate(`/product/${productId}`);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    addItem(product, 1);
+    toast.success(`Added "${product.title}" to cart!`);
   };
 
   return (
@@ -102,7 +112,11 @@ const Shop = () => {
         {/* Product Grid */}
         <div className="section learts-mt-70">
           <div className="container">
-            <ShopProductGrid products={displayedProducts} onProductClick={handleProductClick} />
+            <ShopProductGrid
+              products={displayedProducts}
+              onProductClick={handleProductClick}
+              onAddToCart={handleAddToCart}
+            />
 
             {displayedProducts.length === 0 && (
               <p className="text-center text-body-light learts-mt-40">

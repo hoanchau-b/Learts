@@ -3,9 +3,10 @@ import type { Product } from "../data/products";
 interface ShopProductGridProps {
   products: Product[];
   onProductClick?: (productId: number) => void;
+  onAddToCart?: (product: Product) => void;
 }
 
-const ShopProductGrid = ({ products, onProductClick }: ShopProductGridProps) => {
+const ShopProductGrid = ({ products, onProductClick, onAddToCart }: ShopProductGridProps) => {
   const handleClick = (e: React.MouseEvent, productId: number) => {
     const target = e.target as HTMLElement;
     const link = target.closest<HTMLAnchorElement>(".product .title a, .product .image");
@@ -98,7 +99,15 @@ const ShopProductGrid = ({ products, onProductClick }: ShopProductGridProps) => 
                 <a href="#quickViewModal" data-bs-toggle="modal" className="product-button hintT-top" data-hint="Quick View">
                   <i className="fas fa-search" />
                 </a>
-                <a href="#" className="product-button hintT-top" data-hint="Add to Cart">
+                <a
+                  href="#"
+                  className="product-button hintT-top"
+                  data-hint="Add to Cart"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (product.stock > 0) onAddToCart?.(product);
+                  }}
+                >
                   <i className="fas fa-shopping-cart" />
                 </a>
                 <a href="#" className="product-button hintT-top" data-hint="Compare">

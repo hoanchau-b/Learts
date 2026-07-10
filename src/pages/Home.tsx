@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { products } from "../data/products";
+import { useCartStore } from "../store/cartStore";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const navigate = useNavigate();
+  const addItem = useCartStore((s) => s.addItem);
 
   useEffect(() => {
     const handleProductClick = (e: MouseEvent) => {
@@ -10,16 +14,40 @@ const Home = () => {
       const link = target.closest<HTMLAnchorElement>(".product .title a, .product .image");
       if (link) {
         e.preventDefault();
-        // Extract product ID from href or data attribute
         const href = link.getAttribute("href");
         if (href) {
           navigate(href);
         }
       }
     };
+
+    const handleCartClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const btn = target.closest<HTMLAnchorElement>(".product-button[data-hint='Add to Cart']");
+      if (!btn) return;
+
+      const productEl = btn.closest(".product");
+      if (!productEl) return;
+
+      const titleEl = productEl.querySelector(".title a") as HTMLElement | null;
+      const title = titleEl?.textContent?.trim();
+      if (!title) return;
+
+      const product = products.find((p) => p.title === title);
+      if (product && product.stock > 0) {
+        e.preventDefault();
+        addItem(product, 1);
+        toast.success(`Added "${product.title}" to cart!`);
+      }
+    };
+
     document.addEventListener("click", handleProductClick);
-    return () => document.removeEventListener("click", handleProductClick);
-  }, [navigate]);
+    document.addEventListener("click", handleCartClick);
+    return () => {
+      document.removeEventListener("click", handleProductClick);
+      document.removeEventListener("click", handleCartClick);
+    };
+  }, [navigate, addItem]);
 
   return (
     <>
